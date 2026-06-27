@@ -36,10 +36,13 @@ Full guide is in `setup/windows-setup.md`.
    - `VOICE.md` → `~/VOICE.md`
    Then fill them in with your actual preferences and writing style.
 
-5. **Voice input** - download OpenWhispr (Windows alternative to OpenSuperWhisper):
+5. **Install ponytail skill** - makes Claude write less code (big win since you don't read code).
+   See `setup/skills/ponytail.md`. Repo: https://github.com/DietrichGebert/ponytail
+
+6. **Voice input** - download OpenWhispr (Windows alternative to OpenSuperWhisper):
    https://github.com/OpenWhispr/openwhispr
 
-6. **Login to Claude Code:**
+7. **Login to Claude Code:**
    ```bash
    claude
    ```
@@ -56,6 +59,7 @@ Full guide is in `setup/windows-setup.md`.
 | treehouse | Yes | Cross-platform |
 | no-mistakes | Yes | Cross-platform |
 | lavish-axi | Yes | `npx lavish-axi` (no install needed) |
+| ponytail | Yes | Claude Code skill - makes the agent write less code |
 | firstmate | WSL2 only | Depends on tmux + bash |
 | OpenSuperWhisper | No - macOS only | Use OpenWhispr instead |
 
