@@ -8,6 +8,34 @@
 You want to replicate Kun Chen's agentic engineering setup on your Windows laptop.
 Full guide is in `setup/windows-setup.md`.
 
+## Your agent: Codex and/or Claude Code
+
+The whole stack is agent-neutral, so you can use either engine (or both):
+
+- **Codex** - runs on your existing **ChatGPT Plus/Pro** subscription. Sign in with your ChatGPT account, no per-token bill. This is your cheapest starting point.
+- **Claude Code** - needs a separate Claude Pro/Max subscription or an Anthropic API key.
+
+Kun uses both: Claude for interactive work, Codex for background/overnight runs.
+Good news: your `AGENTS.md`, `OPINIONS.md`, and `VOICE.md` are read by **both** agents, so nothing changes there.
+gnhf and firstmate both support `claude` and `codex` as targets out of the box.
+
+## Where to run it: laptop vs always-on desktop
+
+- **Start directly on your laptop.** Everything runs locally in WSL2. Simplest, fully enough.
+- For **overnight gnhf runs**, keep the laptop plugged in and stop it from sleeping (gnhf has a Windows sleep helper).
+- **Later upgrade (Kun's actual setup):** an always-on desktop runs the tmux session 24/7, and you SSH in from laptop or phone (terminal app + `tmux attach`, with Tailscale for easy networking). That is how he checks his agents from his phone. Not needed to begin with.
+
+## Getting started checklist (first session, ~45 min)
+
+- [ ] Run `wsl --install` in PowerShell (admin), restart PC
+- [ ] Install WezTerm, copy `setup/wezterm.lua` to `~/.wezterm.lua`
+- [ ] Open WezTerm (lands in WSL2), then run the install block in step 3 below
+- [ ] Copy the three templates to your home dir (step 4)
+- [ ] Install your agent: Codex (ChatGPT login) and/or Claude Code (step 7)
+- [ ] Install the skills (step 5)
+- [ ] Start `tmux`, launch your agent, say hi
+- [ ] (Optional now) voice input + Neovim config
+
 ## TL;DR - Do These In Order
 
 1. **WSL2 first** - everything else depends on it
@@ -24,10 +52,10 @@ Full guide is in `setup/windows-setup.md`.
    sudo apt update && sudo apt install tmux neovim -y
    curl -fsSL https://fnm.vercel.app/install | bash && source ~/.bashrc
    fnm install --lts && fnm use lts-latest
-   npm install -g @anthropic-ai/claude-code
    npm install -g gnhf
    curl -fsSL https://kunchenguid.github.io/treehouse/install.sh | bash
    npm install -g no-mistakes
+   # firstmate: see https://github.com/kunchenguid/firstmate for the current install command
    ```
 
 4. **Copy templates** from `setup/templates/` to your home directory:
@@ -47,9 +75,15 @@ Full guide is in `setup/windows-setup.md`.
 6. **Voice input** - download OpenWhispr (Windows alternative to OpenSuperWhisper):
    https://github.com/OpenWhispr/openwhispr
 
-7. **Login to Claude Code:**
+7. **Install and log in to your agent** (pick one or both):
    ```bash
-   claude
+   # Codex (uses your ChatGPT Plus/Pro subscription)
+   npm install -g @openai/codex     # check OpenAI docs for the current package/command
+   codex                            # then sign in with your ChatGPT account
+
+   # Claude Code (needs a Claude subscription or Anthropic API key)
+   npm install -g @anthropic-ai/claude-code
+   claude                           # then log in
    ```
 
 ## Tool Compatibility Summary
@@ -59,8 +93,9 @@ Full guide is in `setup/windows-setup.md`.
 | WezTerm | Yes, native | Install on Windows directly |
 | tmux | WSL2 only | Core dependency for everything |
 | Neovim | Yes (WSL2 recommended) | |
-| Claude Code | Yes, native + WSL2 | |
-| gnhf | Yes | `npm install -g gnhf` |
+| Codex | Yes, WSL2 | Runs on your ChatGPT Plus/Pro subscription |
+| Claude Code | Yes, native + WSL2 | Needs Claude subscription or Anthropic API key |
+| gnhf | Yes | `npm install -g gnhf` - supports codex and claude |
 | treehouse | Yes | Cross-platform |
 | no-mistakes | Yes | Cross-platform |
 | lavish-axi | Yes | Visual HTML planning - `npx skills add kunchenguid/lavish-axi --skill lavish` |
@@ -73,9 +108,10 @@ Full guide is in `setup/windows-setup.md`.
 ## What Each Tool Does
 
 - **WezTerm** - Terminal emulator, GPU accelerated, cross-platform
-- **tmux** - Multiple terminal sessions/windows in one. Kun runs Claude Code in one window, nvim in another
-- **Neovim** - Code editor. Connects to Claude Code via plugin
-- **Claude Code** - The AI coding agent (the main thing)
+- **tmux** - Multiple terminal sessions/windows in one. Run your agent in one window, nvim in another
+- **Neovim** - Code editor. Connects to your agent via plugin
+- **Codex** - OpenAI's coding agent, runs on your ChatGPT subscription
+- **Claude Code** - Anthropic's coding agent (needs a Claude plan or API key)
 - **gnhf** ("Good Night Have Fun") - Runs agents overnight. Set a goal, go to sleep, wake up to commits
 - **treehouse** - Manages parallel git worktrees so multiple agents can work simultaneously without conflicts
 - **firstmate** - Talks to one agent that then orchestrates a crew of parallel agents in tmux windows
@@ -100,8 +136,8 @@ Night:
   no-mistakes → validates everything before it goes to remote
 
 Always:
-  tmux windows = 1: Claude Code, 2: nvim, 3+: whatever you need
-  AGENTS.md = Kun's "constitution" that all agents read
+  tmux windows = 1: your agent (codex/claude), 2: nvim, 3+: whatever you need
+  AGENTS.md = your "constitution" that all agents read (Codex and Claude both read it)
 ```
 
 ## Links
@@ -115,4 +151,6 @@ Always:
 - AXI: https://axi.md
 - WezTerm: https://wezterm.org
 - OpenWhispr (Windows): https://github.com/OpenWhispr/openwhispr
+- Codex with ChatGPT plan: https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan
+- skills CLI: https://github.com/vercel-labs/skills
 - YouTube video: https://youtu.be/iQyg-KypKAA

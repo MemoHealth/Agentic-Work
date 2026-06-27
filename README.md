@@ -18,6 +18,8 @@ Setup and resources for replicating Kun Chen's agentic engineering workflow.
 This is Kun Chen's ([@kunchenguid](https://github.com/kunchenguid)) agentic workflow stack adapted for Windows.
 Kun is an ex-Meta L8 principal engineer who ships 40+ PRs/day using AI agents.
 
-Key tools: WezTerm + WSL2 + tmux + Neovim + Claude Code + gnhf + treehouse + firstmate + no-mistakes + lavish-axi
+The stack is agent-neutral: use **Codex** (on a ChatGPT Plus/Pro subscription) and/or **Claude Code**.
+
+Key tools: WezTerm + WSL2 + tmux + Neovim + (Codex / Claude Code) + gnhf + treehouse + firstmate + no-mistakes + AXI tools (gh-axi, chrome-devtools-axi, lavish-axi) + ponytail, installed via the `npx skills` CLI.
 
 Watch the video: https://youtu.be/iQyg-KypKAA

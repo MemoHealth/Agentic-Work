@@ -82,18 +82,27 @@ EOF
 
 ---
 
-## Phase 4 - Claude Code
+## Phase 4 - Your agent (Codex and/or Claude Code)
 
-**Step 8: Install Claude Code CLI**
+The stack is agent-neutral. Pick one or both. Codex runs on a ChatGPT Plus/Pro
+subscription; Claude Code needs a Claude plan or an Anthropic API key.
+
+**Step 8: Install your agent CLI**
 ```bash
+# Codex (OpenAI) - uses your ChatGPT subscription
+npm install -g @openai/codex     # check OpenAI docs for the current package/command
+
+# Claude Code (Anthropic)
 npm install -g @anthropic-ai/claude-code
 ```
 
 **Step 9: Log in**
 ```bash
-claude
+codex     # sign in with your ChatGPT account
+# and/or
+claude    # authenticate with your Anthropic account
 ```
-Follow the prompts to authenticate with your Anthropic account.
+Both agents read the same `AGENTS.md` / `OPINIONS.md` / `VOICE.md`, so your persona works either way.
 
 **Step 10: Set up global agent instructions**
 
@@ -166,7 +175,12 @@ OpenSuperWhisper (what Kun uses) is macOS only. Best Windows alternatives:
 
 ---
 
-## Phase 7 - Neovim + Claude Code Integration
+## Phase 7 - Neovim + agent integration
+
+Note: a simpler path is to skip the manual steps below and just copy the ready
+config from this repo: `cp setup/tools/nvim-init.lua ~/.config/nvim/init.lua`.
+The manual version is here so you understand what it does.
+
 
 **Step 16: Install a Neovim plugin manager**
 ```bash
@@ -175,7 +189,7 @@ git clone --filter=blob:none https://github.com/folke/lazy.nvim.git \
   --branch=stable ~/.local/share/nvim/lazy/lazy.nvim
 ```
 
-**Step 17: Add Claude Code Neovim plugin**
+**Step 17: Add the agent integration plugin**
 
 Add to `~/.config/nvim/init.lua`:
 ```lua
@@ -187,7 +201,8 @@ require("lazy").setup({
 })
 ```
 
-This lets Neovim connect to Claude Code so the agent has full editor access.
+This lets Neovim connect to your agent so it has full editor access.
+(The plugin is named for Claude Code but the editor-server pattern works alongside other agents too.)
 
 ---
 
@@ -197,8 +212,8 @@ This lets Neovim connect to Claude Code so the agent has full editor access.
 # Start a tmux session
 tmux new-session -s work
 
-# Window 1: Claude Code
-claude
+# Window 1: your agent
+codex     # or: claude
 
 # Ctrl+B C to open new window
 # Window 2: Neovim
@@ -225,7 +240,7 @@ After setup, verify each tool:
 - [ ] `tmux --version` works
 - [ ] `nvim --version` works
 - [ ] `node --version` shows v20+
-- [ ] `claude --version` works
+- [ ] your agent works: `codex --version` and/or `claude --version`
 - [ ] `gnhf --version` works
 - [ ] `treehouse --version` works
 - [ ] `~/AGENTS.md` exists and is filled in
@@ -245,4 +260,4 @@ After setup, verify each tool:
 
 **firstmate not working**: Confirm you're inside WSL2 and tmux is running.
 
-**Claude Code auth issues**: Run `claude auth logout` then `claude` again.
+**Agent auth issues**: for Claude Code run `claude auth logout` then `claude`; for Codex re-run `codex` and sign in with ChatGPT again.
