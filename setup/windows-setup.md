@@ -90,7 +90,8 @@ subscription; Claude Code needs a Claude plan or an Anthropic API key.
 **Step 8: Install your agent CLI**
 ```bash
 # Codex (OpenAI) - uses your ChatGPT subscription
-npm install -g @openai/codex     # check OpenAI docs for the current package/command
+npm install -g @openai/codex
+# Native Windows alternative: irm https://chatgpt.com/codex/install.ps1 | iex
 
 # Claude Code (Anthropic)
 npm install -g @anthropic-ai/claude-code
@@ -98,7 +99,7 @@ npm install -g @anthropic-ai/claude-code
 
 **Step 9: Log in**
 ```bash
-codex     # sign in with your ChatGPT account
+codex     # then choose "Sign in with ChatGPT" (Plus/Pro/Business/Edu/Enterprise)
 # and/or
 claude    # authenticate with your Anthropic account
 ```
@@ -131,25 +132,33 @@ npm install -g gnhf
 
 Manage parallel git worktrees so multiple agents work simultaneously.
 ```bash
-curl -fsSL https://kunchenguid.github.io/treehouse/install.sh | bash
+# Inside WSL2:
+curl -fsSL https://kunchenguid.github.io/treehouse/install.sh | sh
+# Native Windows PowerShell alternative: irm https://kunchenguid.github.io/treehouse/install.ps1 | iex
 # Usage (in any git repo): treehouse
 ```
 
 **Step 13: no-mistakes - Clean PRs**
 
 Intercepts git push to validate code before it reaches your real remote.
+It is a Go tool, not an npm package.
 ```bash
-# Check https://github.com/kunchenguid/no-mistakes for current install command
-npm install -g no-mistakes
+# Inside WSL2:
+curl -fsSL https://raw.githubusercontent.com/kunchenguid/no-mistakes/main/docs/install.sh | sh
+# Windows-native / Go / source instructions:
+# https://kunchenguid.github.io/no-mistakes/start-here/installation/
 ```
 
 **Step 14: firstmate - Multi-agent orchestrator**
 
 Talk to one agent that manages a whole crew of parallel agents.
+firstmate is not a package - it is a repo you clone and run your agent inside.
 ```bash
-# Check https://github.com/kunchenguid/firstmate for current install command
-# Requires tmux - only works inside WSL2 on Windows
+# Inside WSL2, with tmux running and gh authenticated (gh auth login):
+git clone https://github.com/kunchenguid/firstmate
+cd firstmate && codex     # or: claude - run your agent inside the repo
 ```
+Requires tmux, git + GitHub auth, and a verified agent (codex/claude/opencode/pi). WSL2 only on Windows.
 
 **Step 15: lavish-axi - Visual HTML planning**
 

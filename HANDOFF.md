@@ -55,10 +55,10 @@ gnhf and firstmate both support `claude` and `codex` as targets out of the box.
    curl -fsSL https://fnm.vercel.app/install | bash && source ~/.bashrc
    fnm install --lts && fnm use lts-latest
    npm install -g gnhf
-   curl -fsSL https://kunchenguid.github.io/treehouse/install.sh | bash
-   npm install -g no-mistakes
-   # firstmate: see https://github.com/kunchenguid/firstmate for the current install command
+   curl -fsSL https://kunchenguid.github.io/treehouse/install.sh | sh
+   curl -fsSL https://raw.githubusercontent.com/kunchenguid/no-mistakes/main/docs/install.sh | sh
    ```
+   (firstmate is not a package - it is clone-based, see step 8 below.)
 
 4. **Copy templates** from `setup/templates/` to your home directory:
    - `AGENTS.md` → `~/AGENTS.md`
@@ -80,13 +80,20 @@ gnhf and firstmate both support `claude` and `codex` as targets out of the box.
 7. **Install and log in to your agent** (pick one or both):
    ```bash
    # Codex (uses your ChatGPT Plus/Pro subscription)
-   npm install -g @openai/codex     # check OpenAI docs for the current package/command
-   codex                            # then sign in with your ChatGPT account
+   npm install -g @openai/codex     # or, native Windows: irm https://chatgpt.com/codex/install.ps1 | iex
+   codex                            # then choose "Sign in with ChatGPT"
 
    # Claude Code (needs a Claude subscription or Anthropic API key)
    npm install -g @anthropic-ai/claude-code
    claude                           # then log in
    ```
+
+8. **firstmate** (multi-agent orchestrator) is clone-based, not a package. Inside WSL2:
+   ```bash
+   git clone https://github.com/kunchenguid/firstmate
+   cd firstmate && codex     # or: claude - run your agent inside the repo
+   ```
+   Needs tmux, git + `gh auth login`, and a verified agent (codex/claude/opencode/pi).
 
 ## Tool Compatibility Summary
 
@@ -98,13 +105,13 @@ gnhf and firstmate both support `claude` and `codex` as targets out of the box.
 | Codex | Yes, WSL2 | Runs on your ChatGPT Plus/Pro subscription |
 | Claude Code | Yes, native + WSL2 | Needs Claude subscription or Anthropic API key |
 | gnhf | Yes | `npm install -g gnhf` - supports codex and claude |
-| treehouse | Yes | Cross-platform |
-| no-mistakes | Yes | Cross-platform |
+| treehouse | Yes | Cross-platform - `install.sh` (WSL) or `install.ps1` (Windows) |
+| no-mistakes | Yes | Go tool - install via curl script (WSL); Windows guide in its docs |
 | lavish-axi | Yes | Visual HTML planning - `npx skills add kunchenguid/lavish-axi --skill lavish` |
 | gh-axi | Yes | Token-efficient GitHub CLI for agents (needs `gh`) |
 | chrome-devtools-axi | Yes | Agent-ergonomic browser automation |
 | ponytail | Yes | Claude Code skill - makes the agent write less code |
-| firstmate | WSL2 only | Depends on tmux + bash |
+| firstmate | WSL2 only | Clone-based (not a package); needs tmux + bash + a verified agent |
 | OpenSuperWhisper | No - macOS only | Use OpenWhispr instead |
 
 ## What Each Tool Does
