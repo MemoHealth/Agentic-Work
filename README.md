@@ -10,7 +10,8 @@ Setup and resources for replicating Kun Chen's agentic engineering workflow.
 - `setup/templates/OPINIONS.md` — Template for your opinions/preferences file
 - `setup/templates/VOICE.md` — Template for your voice/writing style file
 - `setup/wezterm.lua` — WezTerm config preconfigured for WSL2
-- `setup/skills/ponytail.md` — The ponytail "write less code" skill and why it fits
+- `setup/skills/` — Agent skills: the `npx skills` CLI, the AXI tools, and ponytail
+- `setup/tools/` — Terminal stack guide (WezTerm + tmux + Neovim) with ready-to-use configs
 
 ## What This Is
 

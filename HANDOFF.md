@@ -36,8 +36,13 @@ Full guide is in `setup/windows-setup.md`.
    - `VOICE.md` → `~/VOICE.md`
    Then fill them in with your actual preferences and writing style.
 
-5. **Install ponytail skill** - makes Claude write less code (big win since you don't read code).
-   See `setup/skills/ponytail.md`. Repo: https://github.com/DietrichGebert/ponytail
+5. **Install the agent skills** (via Vercel's `npx skills` CLI - see `setup/skills/README.md`):
+   ```bash
+   npx skills add kunchenguid/gh-axi --skill gh-axi -g
+   npx skills add kunchenguid/chrome-devtools-axi --skill chrome-devtools-axi -g
+   npx skills add kunchenguid/lavish-axi --skill lavish
+   # ponytail: see https://github.com/DietrichGebert/ponytail
+   ```
 
 6. **Voice input** - download OpenWhispr (Windows alternative to OpenSuperWhisper):
    https://github.com/OpenWhispr/openwhispr
@@ -58,7 +63,9 @@ Full guide is in `setup/windows-setup.md`.
 | gnhf | Yes | `npm install -g gnhf` |
 | treehouse | Yes | Cross-platform |
 | no-mistakes | Yes | Cross-platform |
-| lavish-axi | Yes | `npx lavish-axi` (no install needed) |
+| lavish-axi | Yes | Visual HTML planning - `npx skills add kunchenguid/lavish-axi --skill lavish` |
+| gh-axi | Yes | Token-efficient GitHub CLI for agents (needs `gh`) |
+| chrome-devtools-axi | Yes | Agent-ergonomic browser automation |
 | ponytail | Yes | Claude Code skill - makes the agent write less code |
 | firstmate | WSL2 only | Depends on tmux + bash |
 | OpenSuperWhisper | No - macOS only | Use OpenWhispr instead |
@@ -74,6 +81,9 @@ Full guide is in `setup/windows-setup.md`.
 - **firstmate** - Talks to one agent that then orchestrates a crew of parallel agents in tmux windows
 - **no-mistakes** - Intercepts git push, runs review/tests/lint before your code reaches the real remote
 - **lavish-axi** - Opens agent-generated HTML plans in browser, lets you click elements and give feedback
+- **gh-axi** - GitHub CLI rebuilt for agents: cheap, structured output, fewer wasted tokens
+- **chrome-devtools-axi** - Browser automation for agents: open pages, click flows, extract, debug
+- **npx skills** - Vercel's CLI that installs all the skills above (`npx skills add ...`)
 - **AXI** (axi.md) - Design principles for agent-ergonomic CLIs (Kun's own standard - his tools follow it)
 - **OpenWhispr** (Windows alt) - Push-to-talk voice dictation, text appears at cursor
 
