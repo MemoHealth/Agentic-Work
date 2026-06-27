@@ -19,6 +19,8 @@ Kun uses both: Claude for interactive work, Codex for background/overnight runs.
 Good news: your `AGENTS.md`, `OPINIONS.md`, and `VOICE.md` are read by **both** agents, so nothing changes there.
 gnhf and firstmate both support `claude` and `codex` as targets out of the box.
 
+**Plan: one Claude Pro ($20) + one ChatGPT Plus/Codex ($20).** That gives you two independent rate-limit pools to run in parallel. See `setup/dual-agent-strategy.md` for how to split work between them and manage the limits.
+
 ## Where to run it: laptop vs always-on desktop
 
 - **Start directly on your laptop.** Everything runs locally in WSL2. Simplest, fully enough.

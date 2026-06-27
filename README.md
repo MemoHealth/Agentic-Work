@@ -6,6 +6,7 @@ Setup and resources for replicating Kun Chen's agentic engineering workflow.
 
 - `HANDOFF.md` — Where we left off and next steps for your Windows machine
 - `setup/windows-setup.md` — Full step-by-step Windows installation guide
+- `setup/dual-agent-strategy.md` — Getting the most from one Claude Pro + one Codex/ChatGPT sub
 - `setup/templates/AGENTS.md` — Template for your global agent instructions file
 - `setup/templates/OPINIONS.md` — Template for your opinions/preferences file
 - `setup/templates/VOICE.md` — Template for your voice/writing style file
