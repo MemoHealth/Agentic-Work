@@ -6,6 +6,7 @@ Setup and resources for replicating Kun Chen's agentic engineering workflow.
 
 - `HANDOFF.md` — Where we left off and next steps for your Windows machine
 - `setup/windows-setup.md` — Full step-by-step Windows installation guide
+- `setup/bootstrap-wsl2.sh` — One script that automates the WSL2-side install
 - `setup/dual-agent-strategy.md` — Getting the most from one Claude Pro + one Codex/ChatGPT sub
 - `setup/templates/AGENTS.md` — Template for your global agent instructions file
 - `setup/templates/OPINIONS.md` — Template for your opinions/preferences file

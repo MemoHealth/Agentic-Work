@@ -38,6 +38,16 @@ gnhf and firstmate both support `claude` and `codex` as targets out of the box.
 - [ ] Start `tmux`, launch your agent, say hi
 - [ ] (Optional now) voice input + Neovim config
 
+## Fast path: one script for the WSL2 side
+
+After steps 1-2 below (WSL2 + WezTerm), you can skip the manual WSL2 commands and run one script that does steps 3, 4, 5, and 8 for you:
+```bash
+git clone https://github.com/MemoHealth/Agentic-Work
+cd Agentic-Work
+bash setup/bootstrap-wsl2.sh
+```
+It installs the tools, copies your persona files and configs, installs the skills, and clones firstmate. It does NOT sign you into Codex/Claude - you do that yourself afterwards (browser auth). The manual steps below are the same thing spelled out, in case you prefer to go one command at a time.
+
 ## TL;DR - Do These In Order
 
 1. **WSL2 first** - everything else depends on it
